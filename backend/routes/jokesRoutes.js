@@ -4,7 +4,6 @@ const {getRandomJoke, submitVote, deleteJoke, updateContentJoke} = require('../c
 
 const router = express.Router()
 
-//Routes of jokes
 router.get('/', getRandomJoke)
 router.post('/:id', submitVote)
 router.delete('/:id',deleteJoke)
