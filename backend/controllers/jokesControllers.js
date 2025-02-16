@@ -40,11 +40,35 @@ const submitVote =  asyncHandler( async (req, res ) => {
 });
 
 const deleteJoke =  asyncHandler( async (req, res ) => {
-    res.sendStatus(200)
+    try {
+        const {id} = req.params
+        const joke = await Joke.findOne({id})
+        if(!joke) return res.status(404).json({error:"Joke doesn't exist"})
+    
+        await joke.deleteOne()
+        res.json({message:"Joke Deleted"})
+    } catch (error) {
+        res.status(500).json(error)
+    }
+    
 })
 
 const updateContentJoke =  asyncHandler( async (req, res ) => {
-    res.sendStatus(200)
+    try {
+        const {id} = req.params
+        const joke = await Joke.findOne({id})
+        if(!joke) return res.status(404).json({error:"Joke doesn't exist"})
+        
+        const {question, answer} = req.body
+
+        if(!question || !answer) return res.status(400).json({error: "question and answer are required"})
+
+        await Joke.updateOne({id}, {$set: {question, answer}})
+        res.status(200).json({message:"Joke Updated"})
+        
+    } catch (error) {
+        res.status(500).json(error)
+    }
 })
 
 
