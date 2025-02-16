@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const seedData = require('../utils/seedData')
 
 async function connectDB() {
     try {
@@ -7,6 +7,7 @@ async function connectDB() {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
+        seedData()
         console.log("Connected to MongoDB");
     } catch (error) {
         console.error("Error connecting to MongoDB:", error);
