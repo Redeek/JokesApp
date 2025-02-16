@@ -1,26 +1,17 @@
-const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose')
 
-const uri = process.env.MONGO_URI;
 
-async function fetchJokes() {
-    const client = new MongoClient(uri);
-
+async function connectDB() {
     try {
-        await client.connect(); 
-        console.log("Connected MongoDB!");
-
-        const db = client.db();
-        const collection = db.collection('jokes');
-
-        const jokes = await collection.find().toArray();
-        console.log(jokes);
-
-    } catch (err) {
-        console.error("Error:", err);
-    } finally {
-        await client.close();
-        console.log("Database closed");
+        await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log("Connected to MongoDB");
+    } catch (error) {
+        console.error("Error connecting to MongoDB:", error);
+        process.exit(1);
     }
 }
 
-fetchJokes();
+module.exports = connectDB
