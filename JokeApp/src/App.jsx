@@ -9,11 +9,11 @@ function App() {
   return (
     <>
     <Router>
-      <div className='container'>
+      <div className=''>
       <Header />
       </div>
       
-      <div className="card">
+      <div className="">
         <Routes>
           <Route path='/' element={<Main/>}/>
           <Route path='/edit' element={<EditJoke/>} />

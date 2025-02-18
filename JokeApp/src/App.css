@@ -6,13 +6,9 @@
 
 
 .card {
-  padding: 2em;
+  padding-top: 0.3rem;
+  position: fixed;
 }
-
-.read-the-docs {
-  color: #888;
-}
-
 
 .container {
   padding-top: 60px;
