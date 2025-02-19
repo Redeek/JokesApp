@@ -2,6 +2,7 @@ import { Grid } from "@mantine/core";
 import {useState, useEffect} from "react"
 import JokeQuestion from "../components/JokeQuestion";
 import JokeAnswer from "../components/JokeAnswer";
+import Votes from "../components/Votes";
 
 function Main() {
     const [joke, setJoke] = useState(null)
@@ -21,13 +22,15 @@ function Main() {
 
         } catch (error) {
             console.error("Error fetching data:", error)
+            setError(error)
         } finally{
             setLoading(false)
         }
     };
     
     useEffect(() => {
-        GetJoke();
+        GetJoke()
+        
     }, []);
     
     if(loading){
@@ -41,7 +44,7 @@ function Main() {
     
 
     return ( <>
-    <div className="">
+    <div className="Main">
         <Grid className="Joke">
             <Grid.Col className="Question">
                 <JokeQuestion question={joke?.question} />
@@ -50,9 +53,15 @@ function Main() {
                 <JokeAnswer answer={joke?.answer} />
             </Grid.Col>
         </Grid>
-        <Grid className="Votes">
-            Votes
-            <> </>
+        <Grid className="Votes" grow>
+        {
+            joke?.votes?.map((vote) => (
+                 <Grid.Col span={4} key={vote._id}>
+                    <Votes value={vote.value} label={vote.label} id={joke.id} onVote={setJoke} /> 
+                 </Grid.Col>
+            ))
+        }
+         
         </Grid>
     </div>
     </> );

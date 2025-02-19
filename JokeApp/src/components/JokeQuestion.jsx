@@ -1,6 +1,11 @@
+
+
 function JokeQuestion({question}) {
     return ( <>
-        <p>{question}</p>
+    <div>
+        <p>Question: {question}</p>
+    </div>
+    
     </>);
 }
 

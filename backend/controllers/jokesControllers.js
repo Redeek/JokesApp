@@ -37,7 +37,7 @@ const submitVote =  asyncHandler( async (req, res ) => {
         vote.value += 1
 
         await joke.save()
-        res.json({message: "Voted!"})
+        res.json({message: "Voted!", joke})
         
     }catch(error){
         res.status(500).json(error)

@@ -2,7 +2,7 @@
 
 function JokeAnswer({answer}) {
     return ( <>
-    <p>{answer}</p>
+    <p>Answer: {answer}</p>
     </>);
 }
 

@@ -9,11 +9,11 @@ function App() {
   return (
     <>
     <Router>
-      <div className=''>
+      <div className="Header">
       <Header />
       </div>
       
-      <div className="">
+      <div className="Body">
         <Routes>
           <Route path='/' element={<Main/>}/>
           <Route path='/edit' element={<EditJoke/>} />
