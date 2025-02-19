@@ -1,8 +1,9 @@
-import { Grid } from "@mantine/core";
+import { Button, Grid, Slider} from "@mantine/core";
 import {useState, useEffect} from "react"
 import JokeQuestion from "../components/JokeQuestion";
 import JokeAnswer from "../components/JokeAnswer";
-import Votes from "../components/Votes";
+import VotesButton from "../components/VotesButton";
+import GenerateNewJokeButton from "../components/GenerateNewJokeButton";
 
 function Main() {
     const [joke, setJoke] = useState(null)
@@ -43,28 +44,35 @@ function Main() {
 
     
 
-    return ( <>
-    <div className="Main">
-        <Grid className="Joke">
-            <Grid.Col className="Question">
+    return (
+    <div className="main">
+        <Grid className="joke">
+            <Grid.Col className="question" span={6}>
                 <JokeQuestion question={joke?.question} />
             </Grid.Col>
-            <Grid.Col className="Answer">
+            <Grid.Col className="answer" span={6}>
                 <JokeAnswer answer={joke?.answer} />
             </Grid.Col>
         </Grid>
-        <Grid className="Votes" grow>
+
+         <Grid className="votes">
+            
         {
             joke?.votes?.map((vote) => (
-                 <Grid.Col span={4} key={vote._id}>
-                    <Votes value={vote.value} label={vote.label} id={joke.id} onVote={setJoke} /> 
-                 </Grid.Col>
+                <Grid.Col span={4}>
+                    <VotesButton value={vote.value} label={vote.label} id={joke.id} onVote={setJoke} />
+                </Grid.Col> 
             ))
         }
-         
-        </Grid>
+            
+            
+        </Grid> 
+
+         <GenerateNewJokeButton Generate={GetJoke}/> 
+        
+        
     </div>
-    </> );
+    );
 }
 
 export default Main;

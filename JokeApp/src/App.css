@@ -1,15 +1,36 @@
 #root {
-  max-width: 1280px;
+  max-width: 50%;
   margin: 0 auto;
   text-align: center;
 }
 
-
-.card {
-  padding-top: 0.3rem;
-  position: fixed;
+body {
+  background-color: #e0e0e0;
+  margin: 0;
+  padding: 0;
 }
 
-.container {
-  padding-top: 60px;
+.main{
+  padding-top: 120px;
+}
+
+.votes {
+  
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.voteButton {
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.generateNewJokeButton{
+  background-color: #8BBD8B;
+  width: max-content;
+  min-width: 100%;
+}
+
+.generateNewJokeButton:hover{
+  background-color: rgb(89, 121, 89);
 }

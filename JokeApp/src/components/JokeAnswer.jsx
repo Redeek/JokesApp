@@ -1,9 +1,9 @@
 
 
 function JokeAnswer({answer}) {
-    return ( <>
+    return (
     <p>Answer: {answer}</p>
-    </>);
+    );
 }
 
 export default JokeAnswer;

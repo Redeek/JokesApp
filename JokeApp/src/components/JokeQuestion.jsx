@@ -1,12 +1,9 @@
 
 
 function JokeQuestion({question}) {
-    return ( <>
-    <div>
+    return (
         <p>Question: {question}</p>
-    </div>
-    
-    </>);
+    );
 }
 
 export default JokeQuestion;

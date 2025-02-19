@@ -1,6 +1,6 @@
-import { Button } from "@mantine/core";
+import { Button, Grid } from "@mantine/core";
 
-function Votes({value, label, id, onVote}) {
+function VotesButton({value, label, id, onVote}) {
 
     const addVote = async () => {
 
@@ -26,12 +26,12 @@ function Votes({value, label, id, onVote}) {
         
     }
 
-    return ( <>
+    return (
     
-    <Button onClick={() => addVote()}>
-        {label}: {value}
-    </Button>
-    </> );
+        <Button onClick={() => addVote()} className="voteButton">
+            {label}: {value}
+        </Button>
+     );
 }
 
-export default Votes;
+export default VotesButton;
