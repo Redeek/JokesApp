@@ -28,8 +28,21 @@ function VotesButton({value, label, id, onVote}) {
 
     return (
     
-        <Button onClick={() => addVote()} className="voteButton">
-            {label}: {value}
+        <Button 
+            onClick={() => addVote()} 
+            className="voteButton" 
+            style={{
+                width:"100%", 
+                maxHeight:"3.5rem", 
+                height:"4rem",
+                display:"flex",
+                flexDirection:"column",
+                justifyContent: "center",
+                alignItems:"center",
+                textAlign:"center"
+            }}>
+            <p> {label} </p>
+            <p> {value} </p>
         </Button>
      );
 }

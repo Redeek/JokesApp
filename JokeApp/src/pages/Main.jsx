@@ -1,4 +1,4 @@
-import { Button, Grid, Slider} from "@mantine/core";
+import { Button, Container, Grid, Slider} from "@mantine/core";
 import {useState, useEffect} from "react"
 import JokeQuestion from "../components/JokeQuestion";
 import JokeAnswer from "../components/JokeAnswer";
@@ -18,7 +18,6 @@ function Main() {
             }
 
             const data = await response.json()
-            console.log(data)
             setJoke(data)
 
         } catch (error) {
@@ -45,7 +44,7 @@ function Main() {
     
 
     return (
-    <div className="main">
+    <Container className="main">
         <Grid className="joke">
             <Grid.Col className="question" span={6}>
                 <JokeQuestion question={joke?.question} />
@@ -59,7 +58,7 @@ function Main() {
             
         {
             joke?.votes?.map((vote) => (
-                <Grid.Col span={4}>
+                <Grid.Col span={4} key={vote._id}>
                     <VotesButton value={vote.value} label={vote.label} id={joke.id} onVote={setJoke} />
                 </Grid.Col> 
             ))
@@ -71,7 +70,7 @@ function Main() {
          <GenerateNewJokeButton Generate={GetJoke}/> 
         
         
-    </div>
+    </Container>
     );
 }
 
