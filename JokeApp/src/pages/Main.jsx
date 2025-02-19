@@ -38,7 +38,7 @@ function Main() {
     }
 
     if(error){
-        return <p>Error: {error}</p>
+        return <p>Error: {error.message}</p>
     }
 
     
