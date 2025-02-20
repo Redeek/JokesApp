@@ -1,9 +1,11 @@
-import { Button, Grid } from "@mantine/core";
+import { Button, Notification } from "@mantine/core";
+import { useState } from "react";
 
 function VotesButton({value, label, id, onVote}) {
-
+    const [notification, setNotification] = useState(null);
+    
     const addVote = async () => {
-
+        
         try {
             const requestOptions = {
                 method: 'POST',
@@ -20,13 +22,40 @@ function VotesButton({value, label, id, onVote}) {
             
             onVote((prevJoke) => ({...prevJoke, votes:updatedJoke.joke.votes}))
             
+            setNotification({
+                type: 'success',
+                message: 'Voted successfully'
+            })
+
         } catch (error) {
             console.error("Error: ",error)
+            setNotification({
+                type: 'error',
+                message: 'Vote was unsuccessful'
+            })
         }
         
     }
 
-    return (
+    return (<>
+        <div>
+            {notification && (
+                <Notification
+                    title={notification?.type === 'success' ? "You voted": "Error"}
+                    onClose={() => setNotification(null)}
+                    position="top-right"
+                    style={{
+                        zIndex:9999,
+                        position: 'absolute',
+                        top: '5px',
+                        right: '5px'
+                    }}
+                >
+                    {notification?.message}
+                </Notification>
+            )}
+            
+        </div>
     
         <Button 
             onClick={() => addVote()} 
@@ -44,7 +73,7 @@ function VotesButton({value, label, id, onVote}) {
             <p> {label} </p>
             <p> {value} </p>
         </Button>
-     );
+    </> );
 }
 
 export default VotesButton;
